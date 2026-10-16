@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Plain-English Overview (For First-Year Students & Club Reviewers)
+## 1. Overview 
 
 Imagine EVE has gone missing somewhere inside a $12 \times 12$ industrial sector filled with rubble walls, solar charging stations, and counterfeit decoy radio beacons. WALL-E has to find her—but **WALL-E is never allowed to peek at EVE's true coordinates**.
 
