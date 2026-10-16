@@ -1,0 +1,29 @@
+{
+  "mission_name": "Sector 7G — Standard Search",
+  "preset_id": "normal",
+  "description": "Balanced 12x12 sector with moderate noise, scattered debris obstacles, and 1 decoy beacon.",
+  "grid_width": 12,
+  "grid_height": 12,
+  "seed": 42,
+  "start_position": [0, 0],
+  "target_position": [9, 10],
+  "true_eve_status": "CRITICAL_LOW_POWER",
+  "decoy_positions": [[2, 9]],
+  "obstacles": [
+    [2, 2], [2, 3], [3, 3], [5, 1], [5, 2],
+    [4, 6], [5, 6], [6, 4], [8, 3], [8, 4],
+    [3, 8], [3, 9], [7, 8], [8, 8], [9, 6], [10, 6]
+  ],
+  "charging_stations": [[0, 0], [6, 6]],
+  "battery_capacity": 100,
+  "move_cost": 2,
+  "scan_cost": 3,
+  "wait_cost": 1,
+  "charge_rate": 40,
+  "sensor_noise_std": 0.07,
+  "signal_decay_rate": 0.14,
+  "decoy_count": 1,
+  "decoy_strength": 0.45,
+  "max_actions": 95,
+  "reveal_target_on_end": true
+}
