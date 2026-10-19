@@ -70,6 +70,12 @@ flowchart TD
 - `AutonomousAgent.__init__()` explicitly raises a `ValueError("SECURITY VIOLATION")` if passed any configuration object containing `target_position`.
 - Ground-truth coordinates are **only** disclosed inside `PostMissionEvaluation` after the mission status transitions out of `ACTIVE`/`PAUSED`.
 
+### 3D Mission View
+The dashboard defaults to a 3D tactical view (toggle to the classic **2D Grid** at any time), built with `three.js` and React Three Fiber:
+- **Procedural 3D WALL-E** (`frontend/src/components/WalleModel.tsx`) made from primitives, so there are no model files to download. It glides between cells, turns toward its heading, scans with flaring eyes, and droops with red eyes when the battery is low.
+- **3D map** (`frontend/src/components/Scene3D.tsx`): the belief heatmap is a glowing floor whose tiles rise with posterior probability, plus obstacle blocks, solar docks, the A* route, and a pulse ring on every scan. Drag to orbit, scroll to zoom.
+- **Presentation only:** the 3D scene reads the sanitized public mission state. It cannot influence planning, beliefs, or metrics, and EVE/decoys are drawn only after the mission ends.
+
 ---
 
 ## 3. Technical Algorithms & Mathematical Formulation
