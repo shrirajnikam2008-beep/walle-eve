@@ -22,6 +22,7 @@ import {
   StepTraceEntry,
 } from './types/mission';
 import { GridMap } from './components/GridMap';
+import { Scene3D } from './components/Scene3D';
 import { ChaosAndRadioPanel } from './components/ChaosAndRadioPanel';
 import { TelemetryAndTracePanel } from './components/TelemetryAndTracePanel';
 import { BenchmarkSection } from './components/BenchmarkSection';
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
   const [speedMs, setSpeedMs] = useState<number>(320);
   const [showHeatmap, setShowHeatmap] = useState<boolean>(true);
   const [humorEnabled, setHumorEnabled] = useState<boolean>(true);
+  const [viewMode, setViewMode] = useState<'2d' | '3d'>('3d');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -415,7 +417,26 @@ export const App: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
               {/* Left Column (5 cols): Interactive Grid Map + Chaos & Radio */}
               <div className="lg:col-span-5 space-y-4">
-                <GridMap mission={mission} showHeatmap={showHeatmap} />
+                <div className="flex items-center justify-end gap-1.5">
+                  {(['3d', '2d'] as const).map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => setViewMode(m)}
+                      className={`text-xs font-mono px-3 py-1 rounded border transition ${
+                        viewMode === m
+                          ? 'bg-amber-500/20 border-amber-400 text-amber-300'
+                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      {m === '3d' ? '3D View' : '2D Grid'}
+                    </button>
+                  ))}
+                </div>
+                {viewMode === '3d' ? (
+                  <Scene3D mission={mission} showHeatmap={showHeatmap} />
+                ) : (
+                  <GridMap mission={mission} showHeatmap={showHeatmap} />
+                )}
                 <ChaosAndRadioPanel
                   chaos={mission.chaos}
                   latestCommentary={mission.latest_commentary}
